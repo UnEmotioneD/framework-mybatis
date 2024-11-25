@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 현재 mapper 파일의 이름을 지정해준다 -->
+<mapper namespace="member">
+	<!-- html == 사용자가 볼수 있게 해줌 -->
+	<!-- xml == 데이터를 저장하는 목적으로 사용 -->
+
+	<!-- src/main/java 까지는 기본으로 잡힘 -->
+	<select id="selectOneMember"
+		parameterType="kr.or.iei.member.model.vo.Member"
+		resultType="kr.or.iei.member.model.vo.Member">
+		<!-- resultType == 실행 결과를 Member 객체로 묶어서 보낸다 -->
+		select 
+		member_no as "member_no", 
+		member_id as "memberId", 
+		member_pw as "memberPW"
+		member_name as "memberName",
+		member_email as "memberEmail",
+		member_phone as "memberPhone",
+		member_addr as "memberAddr",
+		member_level as "memberLevel",
+		enroll_date as "enrollDate"
+		from tbl_member
+			where member_id = #{memberId}
+			  and member_pw = #{memberPw}
+	</select>
+</mapper>
