@@ -9,14 +9,14 @@
 </head>
 <body>
 	<script>
-		const title = '${title}';
-		const text = '${text}';
-		const icon = '${icon}';
-		const loc = '${loc}';
+		const title = "${title}";
+		const text = "${text}";
+		const icon = "${icon}";
+		const loc = "${loc}";
 
 		swal({
 			title : title,
-			tet : text,
+			text : text,
 			icon : icon
 		}).then(function() {
 			if (loc != '' && loc != null) {

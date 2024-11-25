@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<settings>
 		<!-- NULL 값을 공백이 아닌 null 로 인식하게끔 -->
@@ -16,7 +16,7 @@
 				<property name="driver"
 					value="oracle.jdbc.driver.OracleDriver" />
 				<property name="url"
-					value="jdbc:oracle:thin:@127.0.01:1521:xe" />
+					value="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
 				<property name="username" value="mybatis_test" />
 				<property name="password" value="1234" />
 			</dataSource>
@@ -28,5 +28,4 @@
 		<!-- 상대 경로 -->
 		<mapper resource="mapper/member-mapper.xml" />
 	</mappers>
-
 </configuration>

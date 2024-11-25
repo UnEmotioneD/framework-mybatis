@@ -22,4 +22,17 @@ public class MemberService {
 		return loginMember;
 	}
 
+	public int insertMember(Member member) {
+		SqlSession session = SqlSessionTemplate.getSqsession();
+		int result = dao.insertMember(session, member);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			// 하나만 할 경우에는 rollback 하지 않아도 된다
+			session.rollback();
+		}
+		return result;
+	}
+
 }
