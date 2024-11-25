@@ -7,8 +7,7 @@ import kr.or.iei.member.model.vo.Member;
 public class MemberDao {
 
 	public Member selectOneMember(SqlSession session, Member member) {
-		session.selectOne("", member);
-		return null;
+		return session.selectOne("member.selectOneMember", member);
 	}
 
 }

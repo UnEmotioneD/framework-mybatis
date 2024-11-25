@@ -45,6 +45,17 @@ public class LoginServlet extends HttpServlet {
 		Member loginMember = service.selectOneMember(member);
 
 		// 4. 결과 처리
+		if (loginMember == null) {
+			request.setAttribute("title", "알림");
+			request.setAttribute("text", "아이디 및 비밀번호");
+			request.setAttribute("icon", "error");
+			request.setAttribute("loc", "/member/loginFrm");
+			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+		} else {
+			System.out.println(loginMember.getMemberId());
+			System.out.println(loginMember.getMemberName());
+			System.out.println(loginMember.getMemberPhone());
+		}
 	}
 
 	/**
