@@ -36,5 +36,10 @@
 			<a href="/member/loginFrm">로그인 페이지로 이동</a>
 		</h3>
 	</c:if>
+	<c:if test="${not empty sessionScope.loginMember}">
+		<ul>
+			<li><a href="/member/allMember">전체 회원 조회</a></li>
+		</ul>
+	</c:if>
 </body>
 </html>

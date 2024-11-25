@@ -1,3 +1,6 @@
+drop table tbl_member;
+drop sequence seq_member;
+
 create table tbl_member (
     member_no number primary key,
     member_id varchar2(20) unique not null,

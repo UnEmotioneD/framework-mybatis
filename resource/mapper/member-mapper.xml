@@ -37,22 +37,22 @@
 		parameterType="kr.or.iei.member.model.vo.Member"
 		resultType="kr.or.iei.member.model.vo.Member">
 		select
-			member_no as "memberNo",
-			member_id as "memberId",
-			member_pw as "memberPW",
-			member_name as "memberName",
+			member_no    as "memberNo",
+			member_id    as "memberId",
+			member_pw    as "memberPW",
+			member_name  as "memberName",
 			member_email as "memberEmail",
 			member_phone as "memberPhone",
-			member_addr as "memberAddr",
+			member_addr  as "memberAddr",
 			member_level as "memberLevel",
-			enroll_date as "enrollDate"
+			enroll_date  as "enrollDate"
 		from tbl_member
 		where member_id = #{memberId}
 		and member_pw = #{memberPw}
 	</select>
 	
 	<!-- 회원 정보 등록
-		insert 의 결과는 항상 정수값이므로 resultType 생략
+		INSERT 의 결과는 항상 정수값이므로 resultType 생략
 	-->
 	<insert id="insertMember"
 		parameterType="kr.or.iei.member.model.vo.Member">
@@ -81,5 +81,23 @@
 			sysdate
 		)
 	</insert>
+	
+	<!-- 저달 받는 파라미터가 없음 -->
+	<!-- resultType : 리스트로 반환되는 객체 자료형 -->
+	<select id="selectAllMember"
+	resultType="kr.or.iei.member.model.vo.Member">
+	select 
+		member_no    as "memberNo",
+		member_id    as "memberId",
+		member_pw    as "memberPW",
+		member_name  as "memberName",
+		member_email as "memberEmail",
+		member_phone as "memberPhone",
+		member_addr  as "memberAddr",
+		member_level as "memberLevel",
+		enroll_date  as "enrollDate"
+	from tbl_member
+	order by 1
+	</select>
 
 </mapper>
