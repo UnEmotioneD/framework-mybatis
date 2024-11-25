@@ -8,7 +8,6 @@ public class MemberDao {
 
 	public Member selectOneMember(SqlSession session, Member member) {
 		session.selectOne("", member);
-
 		return null;
 	}
 
