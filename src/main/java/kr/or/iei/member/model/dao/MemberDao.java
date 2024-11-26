@@ -1,5 +1,6 @@
 package kr.or.iei.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -46,6 +47,14 @@ public class MemberDao {
 
 	public int chgMemberLevel(SqlSession session, Member member) {
 		return session.update("member.chgMemberLevel", member);
+	}
+
+	public List<Member> selDynamicIfTest(SqlSession session, Member member) {
+		return session.selectList("member.selDynamicIfTest", member);
+	}
+
+	public List<Member> selDynamicForTest(SqlSession session, String[] members) {
+		return session.selectList("member.selDynamicForTest", members);
 	}
 
 }

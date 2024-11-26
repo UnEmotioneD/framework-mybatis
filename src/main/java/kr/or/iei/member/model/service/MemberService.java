@@ -85,7 +85,7 @@ public class MemberService {
 		int start = end - viewMemberCnt + 1;
 
 		// dao 에서 xml 퀴리 호출하며, 전달할 수 있는 파라미터는 쿼리ID 를 제외하고 1개 이므로
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		HashMap<String, Integer> map = new HashMap<>();
 		map.put("start", start);
 		map.put("end", end);
 		ArrayList<Member> list = (ArrayList<Member>) dao.selectAllMemberPage(session, map);
@@ -109,7 +109,7 @@ public class MemberService {
 		}
 
 		for (int i = 0; i < pageNaviSize; i++) {
-			pageNavi += "<a href='/member/allMemberPage?reqPage=" + pageNo + "</a>";
+			pageNavi += "<a href='/member/allMemberPage?reqPage=" + pageNo + "'></a>";
 			pageNo++;
 
 			if (pageNo > totPage) {
@@ -146,6 +146,20 @@ public class MemberService {
 
 		session.close();
 		return result;
+	}
+
+	public ArrayList<Member> selDynamicIfTest(Member member) {
+		SqlSession session = SqlSessionTemplate.getSqlsession();
+		ArrayList<Member> list = (ArrayList<Member>)dao.selDynamicIfTest(session, member);
+		session.close();
+		return list;
+	}
+
+	public ArrayList<Member> selDynamicForTest(String[] members) {
+		SqlSession session = SqlSessionTemplate.getSqlsession();
+		ArrayList<Member> list = (ArrayList<Member>)dao.selDynamicForTest(session, members);
+		session.close();
+		return null;
 	}
 
 }

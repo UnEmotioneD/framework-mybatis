@@ -23,7 +23,7 @@
 	특징)
 	1. 자동 매핑 : DB 의 결과를 JAVA 객체로 자동으로 매핑
 	2. XML 파일에 SQL 작성 : SQL 문이 JAVA 코드와 분리되어 가독성 및 유지보수가 용이하다
-	3. 도적 SQL 지원 : if, choose, forEach 같은 구문을 이용하여, 동적인 SQL 문 작성이 가능하다
+	3. 동적 SQL 지원 : if, choose, forEach 같은 구문을 이용하여, 동적인 SQL 문 작성이 가능하다
 	4. SQL 재사용 : XML 에 장석된 하나의 SQL 을 여러곳에서 사용이 가능하다
 	</pre>
 	<hr>
@@ -43,10 +43,11 @@
 			<li><a href="/member/myPage">마이페이지</a></li>
 			<li><a href="/member/logout">로그아웃</a></li>
 			<li><a href="/member/allMemberPage?reqPage=1">전체 회원 조회 (페이징)</a></li>
-
 			<c:if test="${sessionScope.loginMember.memberLevel == 1}">
 				<li><a href="/member/adminPage">관리자 페이지</a></li>
 			</c:if>
+			<li><a href="/views/dynamicQueryTest.jsp">MyBatis 동적 쿼리 테스트</a>
+			</li>
 		</ul>
 	</c:if>
 </body>

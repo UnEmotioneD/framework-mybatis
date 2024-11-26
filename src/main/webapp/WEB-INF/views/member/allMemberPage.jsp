@@ -44,6 +44,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-	${pageNavie}
+	${pageNavi}
 </body>
 </html>
