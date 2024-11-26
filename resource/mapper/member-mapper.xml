@@ -217,7 +217,7 @@
 	separator : 각 요소들을 구분할 구분자 값
 	close : 마지막 요소값 삽입 후 삽입할 값
 	 -->
-	<select id="selectDynamicForTest"
+	<select id="selDynamicForTest"
 	parameterType="map"
 	resultType="member">
 	select
