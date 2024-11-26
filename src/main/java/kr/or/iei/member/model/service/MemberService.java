@@ -129,4 +129,23 @@ public class MemberService {
 		return pd;
 	}
 
+	public int chgMemberLevel(String memberNo, String memberLevel) {
+		SqlSession session = SqlSessionTemplate.getSqlsession();
+
+		Member member = new Member();
+		member.setMemberNo(memberNo);
+		member.setMemberLevel(Integer.parseInt(memberLevel));
+
+		int result = dao.chgMemberLevel(session, member);
+
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+
+		session.close();
+		return result;
+	}
+
 }

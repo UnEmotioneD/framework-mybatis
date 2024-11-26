@@ -69,8 +69,32 @@
 			// $(obj) : button 그 자체
 			// $(obj).parent() : td
 			// $(obj).parents('tr') : tr
-			
-			let memberNo = $(obj).parents('tr').find(".memberNo").html();
+
+			let tr = $(obj).parents('tr');
+
+			let memberNo = tr.find(".memberNo").html();
+			// select 태그에서 name 속성이 memberLevel 인것의 option 태그 중에서 선택된것
+			let memberLevel = tr.find(
+					"select[name=memberLevel] option:selected").val();
+
+			$.ajax({
+				url : "/member/chgLevel",
+				data : {
+					'memberNo' : memberNo,
+					'memberLevel' : memberLevel
+				},
+				type : 'get',
+				success : function(res) {
+					if (res > 0) {
+						alert('등급 변경 완료');
+					} else {
+						alert('등급 변경 실패');
+					}
+				},
+				error : function() {
+					console.log("ajax error");
+				}
+			})
 		}
 	</script>
 </body>

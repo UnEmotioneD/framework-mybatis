@@ -23,7 +23,7 @@
 	특징)
 	1. 자동 매핑 : DB 의 결과를 JAVA 객체로 자동으로 매핑
 	2. XML 파일에 SQL 작성 : SQL 문이 JAVA 코드와 분리되어 가독성 및 유지보수가 용이하다
-	3. 도적 SQL 지원 : if, choose, foreach 같은 구문을 이용하여, 동적인 SQL 문 작성이 가능하다
+	3. 도적 SQL 지원 : if, choose, forEach 같은 구문을 이용하여, 동적인 SQL 문 작성이 가능하다
 	4. SQL 재사용 : XML 에 장석된 하나의 SQL 을 여러곳에서 사용이 가능하다
 	</pre>
 	<hr>
@@ -36,19 +36,18 @@
 			<a href="/member/loginFrm">로그인 페이지로 이동</a>
 		</h3>
 	</c:if>
-	<ul>
-		<c:if test="${not empty sessionScope.loginMember}">
-			<h3>${sessionScope.loginMember.memberName}님환영합니다</h3>
+	<c:if test="${not empty sessionScope.loginMember}">
+		<h3>${sessionScope.loginMember.memberName}님환영합니다</h3>
+		<ul>
 			<li><a href="/member/allMember">전체 회원 조회</a></li>
 			<li><a href="/member/myPage">마이페이지</a></li>
 			<li><a href="/member/logout">로그아웃</a></li>
 			<li><a href="/member/allMemberPage?reqPage=1">전체 회원 조회 (페이징)</a></li>
 
-			<%-- 관리자 페이지는 회원 레벨이 1일 때만 표시 --%>
 			<c:if test="${sessionScope.loginMember.memberLevel == 1}">
 				<li><a href="/member/adminPage">관리자 페이지</a></li>
 			</c:if>
-		</c:if>
-	</ul>
+		</ul>
+	</c:if>
 </body>
 </html>

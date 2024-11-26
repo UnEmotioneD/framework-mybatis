@@ -44,4 +44,8 @@ public class MemberDao {
 		return session.selectOne("member.selectTotalCount");
 	}
 
+	public int chgMemberLevel(SqlSession session, Member member) {
+		return session.update("member.chgMemberLevel", member);
+	}
+
 }
