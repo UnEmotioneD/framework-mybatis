@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>adminPage.jsp</title>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/resources/js/sweetalert.min.js"></script>
 </head>
 <body>
 	<h1>회원 관리 - 관리자 페이지</h1>
@@ -85,11 +86,22 @@
 				},
 				type : 'get',
 				success : function(res) {
+					let title = "알림";
+					let text = "";
+					let icon = "";
+
 					if (res > 0) {
-						alert('등급 변경 완료');
+						text = "회원 정보 수정 성공";
+						icon = "success";
 					} else {
-						alert('등급 변경 실패');
+						text = "회원 정보 수정 실패";
+						icon = "error";
 					}
+					swal({
+						title : title,
+						text : text,
+						icon : icon,
+					});
 				},
 				error : function() {
 					console.log("ajax error");
