@@ -2,7 +2,7 @@
 
 ---
 
-#### window / preferences / xml / xml catalog / user specified entries / catalog entry
+#### Window / Preferences / XML / XML Catalog / User Specified Entries / Catalog Entry
 
 ##### Add config
 
@@ -34,9 +34,9 @@ http://mybatis.org/dtd/mybatis-3-mapper.dtd
 ---
 
 ##### Create new `source folder` under the project directory named `resources`
-##### Create `xml file` under the resource folder named `mybatis-config`
+##### Create `XML file` under the resource folder named `mybatis-config`
 ##### Click next and check
-`create file using a dtd or xml scheme file`
+`create file using a DTD or XML scheme file`
 ##### Click next select `xml catalog entry`
 ##### Click `User Specified Entries` select the one with `config`
 ##### next and finish
@@ -61,12 +61,12 @@ http://mybatis.org/dtd/mybatis-3-mapper.dtd
 
 ---
 
-##### Create new `folder` under the resources named `mapper`
-##### Create `xml file` under the mapper folder named `member-mapper`
+##### Create new `Folder` under the resources named `mapper`
+##### Create `XML File` under the mapper folder named `member-mapper`
 ###### (member from member-mapper can be anything you want)
 ##### Click next and check
-`create file using a dtd or xml scheme file`
-##### Click next select `xml catalog entry`
+`create file using a DTD or XML scheme file`
+##### Click next select `XML Catalog Entry`
 ##### Click `User Specified Entries` select the one with `mapper`
 ##### next and finish
 
