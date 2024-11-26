@@ -99,5 +99,17 @@
 	from tbl_member
 	order by 1
 	</select>
+	
+	<update id="updateMember"
+	parameterType="kr.or.iei.member.model.vo.Member">
+	update tbl_member
+		set
+			member_pw = #{memberPw}, 
+			member_name = #{memberName},
+			member_email = #{memberEmail},
+			member_phone = #{memberPhone},
+			member_addr = #{memberAddr}
+	where member_no = #{memberNo}
+	</update>
 
 </mapper>

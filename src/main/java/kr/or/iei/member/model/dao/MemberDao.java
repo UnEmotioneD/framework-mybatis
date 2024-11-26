@@ -12,7 +12,7 @@ public class MemberDao {
 
 	// session.메소드("mapper의 namespace 속성값.실행할 SQL ID 값", 전달 파라미터
 
-	// 결과는 0 또는 1개 
+	// 결과는 0 또는 1개
 	// 결과가 여러개이면 오류가 난다
 	public Member selectOneMember(SqlSession session, Member member) {
 		return session.selectOne("member.selectOneMember", member);
@@ -25,6 +25,10 @@ public class MemberDao {
 	// 결과는 0, 1, 여러개
 	public List<Member> selectAllMember(SqlSession session) {
 		return session.selectList("member.selectAllMember");
+	}
+
+	public int updateMember(SqlSession session, Member member) {
+		return session.update("member.updateMember", member);
 	}
 
 }

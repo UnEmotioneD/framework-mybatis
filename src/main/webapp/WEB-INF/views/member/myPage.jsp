@@ -13,12 +13,12 @@
 	<hr>
 
 	<form action="/member/update" method="post">
+		<input type="hidden" name="memberNo" value="${loginMember.memberNo}">
 		<table border="1">
 			<tr>
 				<th>아이디</th>
 				<%-- sessionScope 처럼 앞에다가 지정해주지 않으면 범위가 좁은거 부터 찾아서 온다 --%>
-				<td><input type="text" name="memberId"
-					value="${loginMember.memberId}"></td>
+				<td><span>${loginMember.memberId}</span></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
@@ -63,6 +63,9 @@
 			<tr>
 				<th>가입일</th>
 				<td><span> ${loginMember.enrollDate}</span>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="수정하기"></td>
 			</tr>
 
 		</table>

@@ -18,14 +18,14 @@ public class MemberService {
 	}
 
 	public Member selectOneMember(Member member) {
-		SqlSession session = SqlSessionTemplate.getSqsession();
+		SqlSession session = SqlSessionTemplate.getSqlsession();
 		Member loginMember = dao.selectOneMember(session, member);
 		session.close();
 		return loginMember;
 	}
 
 	public int insertMember(Member member) {
-		SqlSession session = SqlSessionTemplate.getSqsession();
+		SqlSession session = SqlSessionTemplate.getSqlsession();
 		int result = dao.insertMember(session, member);
 
 		if (result > 0) {
@@ -40,11 +40,25 @@ public class MemberService {
 	}
 
 	public ArrayList<Member> selectAllMember() {
-		SqlSession session = SqlSessionTemplate.getSqsession();
+		SqlSession session = SqlSessionTemplate.getSqlsession();
 		// Down casting
 		ArrayList<Member> memberList = (ArrayList<Member>) dao.selectAllMember(session);
 		session.close();
 		return memberList;
+	}
+
+	public int updateMember(Member member) {
+		SqlSession session = SqlSessionTemplate.getSqlsession();
+		int result = dao.updateMember(session, member);
+
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		session.close();
+
+		return result;
 	}
 
 }

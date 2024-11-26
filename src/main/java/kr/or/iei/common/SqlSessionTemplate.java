@@ -10,7 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class SqlSessionTemplate {
 
-	public static SqlSession getSqsession() {
+	public static SqlSession getSqlsession() {
 		SqlSession session = null; // SQL 문을 실행하고 트랜잭션을 관리하기위한 객체
 
 		String resource = "mybatis-config.xml"; // config 파일 지정

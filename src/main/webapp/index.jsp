@@ -29,7 +29,7 @@
 	<hr>
 	<%-- 
 		sessionScope (하나 브라우저에서 값을 공유할 수 있는 범위)에 등록하는 이유 : 
-		여러 .jsp 에서 가져다가 쓸 수 있도록 
+		여러 JSP 에서 가져다가 쓸 수 있도록 
 	--%>
 	<c:if test="${empty sessionScope.loginMember}">
 		<h3>
@@ -37,7 +37,7 @@
 		</h3>
 	</c:if>
 	<c:if test="${not empty sessionScope.loginMember}">
-		<h3>${sessionScope.loginMember.memberName}님 환영합니다</h3>
+		<h3>${sessionScope.loginMember.memberName}님환영합니다</h3>
 		<ul>
 			<li><a href="/member/allMember">전체 회원 조회</a></li>
 			<li><a href="/member/myPage">마이페이지</a></li>
