@@ -32,10 +32,10 @@ public class AllMemberPageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int reqPage = request.getParameter("reqPage") != null ? Integer.parseInt(request.getParameter("reqPage")) : 1;
-		
+
 		MemberService service = new MemberService();
 		MemberPageData pd = service.selectAllMemberPage(reqPage);
-		
+
 		request.setAttribute("memberList", pd.getList());
 		request.setAttribute("pageNavi", pd.getPageNavi());
 		request.getRequestDispatcher("/WEB-INF/views/member/allMemberPage.jsp").forward(request, response);

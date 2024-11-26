@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class MemberPageData {
 	private ArrayList<Member> list;
-	public String pageNavi;
+	private String pageNavi;
 }

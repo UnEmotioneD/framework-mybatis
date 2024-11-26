@@ -109,7 +109,7 @@ public class MemberService {
 		}
 
 		for (int i = 0; i < pageNaviSize; i++) {
-			pageNavi += "<a href='/member/allMemberPage?reqPage=" + pageNo + "'></a>";
+			pageNavi += "<a href='/member/allMemberPage?reqPage=" + pageNo + "'>" + pageNo + "</a>";
 			pageNo++;
 
 			if (pageNo > totPage) {
@@ -118,7 +118,7 @@ public class MemberService {
 		}
 
 		if (pageNo <= totPage) {
-			pageNavi += "<a href='/member/allMemberPage?reqPage=" + pageNo + "'>다음</a>";
+			pageNavi += "<a href='/member/allMemberPage?reqPage=" + (pageNo + 1) + "'>다음</a>";
 		}
 
 		MemberPageData pd = new MemberPageData();
@@ -150,14 +150,14 @@ public class MemberService {
 
 	public ArrayList<Member> selDynamicIfTest(Member member) {
 		SqlSession session = SqlSessionTemplate.getSqlsession();
-		ArrayList<Member> list = (ArrayList<Member>)dao.selDynamicIfTest(session, member);
+		ArrayList<Member> list = (ArrayList<Member>) dao.selDynamicIfTest(session, member);
 		session.close();
 		return list;
 	}
 
 	public ArrayList<Member> selDynamicForTest(String[] members) {
 		SqlSession session = SqlSessionTemplate.getSqlsession();
-		ArrayList<Member> list = (ArrayList<Member>)dao.selDynamicForTest(session, members);
+		ArrayList<Member> list = (ArrayList<Member>) dao.selDynamicForTest(session, members);
 		session.close();
 		return list;
 	}

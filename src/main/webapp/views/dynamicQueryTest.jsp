@@ -18,11 +18,12 @@
 
 	<h3>IF Test</h3>
 	<form action="/member/dynamic/ifTest" method="post">
-		<input type="checkbox" name="chkNo"> No <input type="checkbox"
-			name="chkId"> ID <input type="checkbox" name="chkName">
-		Name <input type="checkbox" name="chkEmail"> Email <input
-			type="checkbox" name="chkPhone"> Phone <input type="submit"
-			value="회원정보 조회">
+		<input type="checkbox" name="chkNo">    No 
+		<input type="checkbox" name="chkId">    ID 
+		<input type="checkbox" name="chkName">  Name 
+		<input type="checkbox" name="chkEmail"> Email 
+		<input type="checkbox" name="chkPhone"> Phone 
+		<input type="submit" value="회원정보 조회">
 	</form>
 
 	<hr>
