@@ -42,6 +42,7 @@
 			<li><a href="/member/allMember">전체 회원 조회</a></li>
 			<li><a href="/member/myPage">마이페이지</a></li>
 			<li><a href="/member/logout">로그아웃</a></li>
+			<li><a href="/member/allMemberPage?reqPage=1">전체회원조회(페이징)</a></li>
 		</ul>
 	</c:if>
 </body>

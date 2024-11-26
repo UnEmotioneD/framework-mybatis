@@ -1,12 +1,14 @@
 package kr.or.iei.member.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.iei.common.SqlSessionTemplate;
 import kr.or.iei.member.model.dao.MemberDao;
 import kr.or.iei.member.model.vo.Member;
+import kr.or.iei.member.model.vo.MemberPageData;
 
 public class MemberService {
 
@@ -73,6 +75,58 @@ public class MemberService {
 
 		session.close();
 		return result;
+	}
+
+	public MemberPageData selectAllMemberPage(int reqPage) {
+		SqlSession session = SqlSessionTemplate.getSqlsession();
+
+		int viewMemberCnt = 10;
+		int end = reqPage * viewMemberCnt;
+		int start = end - viewMemberCnt + 1;
+
+		// dao 에서 xml 퀴리 호출하며, 전달할 수 있는 파라미터는 쿼리ID 를 제외하고 1개 이므로
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		ArrayList<Member> list = (ArrayList<Member>) dao.selectAllMemberPage(session, map);
+
+		int totCnt = dao.selectTotalCount(session);
+		int totPage = 0;
+
+		totPage = totCnt / viewMemberCnt;
+
+		if (totCnt % viewMemberCnt != 0) {
+			totPage += 1;
+		}
+
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+
+		String pageNavi = "";
+
+		if (pageNo != 1) {
+			pageNavi += "<a href='/member/allMemberPage?reqPage=" + (pageNo - 1) + "'>이전</a>";
+		}
+
+		for (int i = 0; i < pageNaviSize; i++) {
+			pageNavi += "<a href='/member/allMemberPage?reqPage=" + pageNo + "</a>";
+			pageNo++;
+
+			if (pageNo > totPage) {
+				break;
+			}
+		}
+
+		if (pageNo <= totPage) {
+			pageNavi += "<a href='/member/allMemberPage?reqPage=" + pageNo + "'>다음</a>";
+		}
+
+		MemberPageData pd = new MemberPageData();
+		pd.setList(list);
+		pd.setPageNavi(pageNavi);
+
+		session.close();
+		return pd;
 	}
 
 }

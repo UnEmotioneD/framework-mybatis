@@ -131,5 +131,36 @@
 	parameterType="string">
 	delete from tbl_member where member_no = #{_string}
 	</delete>
+	
+	<select id="selectAllMemberPage"
+	parameterType="map"
+	resultType="kr.or.iei.member.model.vo.MemberPageData">
+	select 
+		member_no    as "memberNo",
+		member_id    as "memberId",
+		member_pw    as "memberPw",
+		member_name  as "memberName",
+		member_email as "memberEmail",
+		member_phone as "memberPhone",
+		member_level as "memberLevel",
+		enroll_date  as "enrollDate"
+	from (
+		select rownum as "rnum", a.*
+		from (
+		select
+			member_no,
+			member_id,
+			member_pw,
+			member_name,
+			member_email,
+			member_phone,
+			member_level,
+			enroll_date
+		from tbl_member
+		order by 1
+		) a
+	) a
+	where rnum between #{start} and #{end}
+	</select>
 
 </mapper>
