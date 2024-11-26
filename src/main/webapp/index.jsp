@@ -37,8 +37,10 @@
 		</h3>
 	</c:if>
 	<c:if test="${not empty sessionScope.loginMember}">
+		<h3>${sessionScope.loginMember.memberName}님 환영합니다</h3>
 		<ul>
 			<li><a href="/member/allMember">전체 회원 조회</a></li>
+			<li><a href="/member/myPage">마이페이지</a></li>
 		</ul>
 	</c:if>
 </body>

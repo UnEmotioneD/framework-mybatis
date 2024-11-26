@@ -23,7 +23,7 @@ insert into tbl_member values
     '관리자', 
     'test@naver.com', 
     '010-1234-1234', 
-    '용인', 
+    '서울', 
     1, 
     sysdate
 );
