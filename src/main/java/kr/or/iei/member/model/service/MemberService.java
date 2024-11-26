@@ -34,8 +34,8 @@ public class MemberService {
 			// 하나만 할 경우에는 rollback 하지 않아도 된다
 			session.rollback();
 		}
-		session.close();
 
+		session.close();
 		return result;
 	}
 
@@ -56,8 +56,22 @@ public class MemberService {
 		} else {
 			session.rollback();
 		}
-		session.close();
 
+		session.close();
+		return result;
+	}
+
+	public int deleteMember(String memberNo) {
+		SqlSession session = SqlSessionTemplate.getSqlsession();
+		int result = dao.deleteMember(session, memberNo);
+
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+
+		session.close();
 		return result;
 	}
 

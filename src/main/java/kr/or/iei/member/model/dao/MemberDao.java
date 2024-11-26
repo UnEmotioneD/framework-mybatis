@@ -31,4 +31,8 @@ public class MemberDao {
 		return session.update("member.updateMember", member);
 	}
 
+	public int deleteMember(SqlSession session, String memberNo) {
+		return session.delete("member.deleteMember", memberNo);
+	}
+
 }

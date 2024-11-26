@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <title>myPage.jsp</title>
 </head>
 <body>
@@ -49,6 +50,7 @@
 				<th>등급</th>
 				<td><c:choose>
 						<%-- ${} 를 사용하는것은 EL 문법 --%>
+
 						<c:when test="${loginMember.memberLevel == 1}">
 						관리자
 						</c:when>
@@ -65,14 +67,20 @@
 				<td><span> ${loginMember.enrollDate}</span>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="수정하기"></td>
+				<td><input type="submit" value="수정하기">
+					<button type="button" onclick="deleteMember()">삭제하기</button></td>
 			</tr>
 
 		</table>
 	</form>
 
 	<script>
-		
+		function deleteMember() {
+			// 삭제 하기 버튼을 누르면 form 태그의 action 속성을 바꿔준다
+			// 삭제 하기 버튼을 누르면 다른 SERVLET 으로 연결된다
+			$('form').attr('action', '/member/delete');
+			$('form').submit();
+		}
 	</script>
 </body>
 </html>

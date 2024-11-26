@@ -82,7 +82,7 @@
 		)
 	</insert>
 	
-	<!-- 저달 받는 파라미터가 없음 -->
+	<!-- 전달 받는 파라미터가 없음 -->
 	<!-- resultType : 리스트로 반환되는 객체 자료형 -->
 	<select id="selectAllMember"
 	resultType="kr.or.iei.member.model.vo.Member">
@@ -111,5 +111,25 @@
 			member_addr = #{memberAddr}
 	where member_no = #{memberNo}
 	</update>
+
+	<!-- 
+		자료형  |  mybatis 자료형
+		=====================
+		int    |  _int
+		short  |  _short
+		byte   |  _byte
+		float  |  _float
+		double |  _double
+		
+		String |  string
+		Map    |  map
+		Hash   |  hashmap (map 이라고 작성해도 동작한다)
+		Date   |  date
+	-->
+
+	<delete id="deleteMember"
+	parameterType="string">
+	delete from tbl_member where member_no = #{_string}
+	</delete>
 
 </mapper>
