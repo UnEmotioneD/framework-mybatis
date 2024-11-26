@@ -31,7 +31,7 @@ public class EncodingFilter extends HttpFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		// place your code here
+		// 인코딩
 		request.setCharacterEncoding("UTF-8");
 
 		// filter 를 여러개 만들었을때 다음 필터를 실행할때 연개하고 마지막에 .doFilter() 가 SERVLET 을 불러온다 
