@@ -159,7 +159,7 @@ public class MemberService {
 		SqlSession session = SqlSessionTemplate.getSqlsession();
 		ArrayList<Member> list = (ArrayList<Member>)dao.selDynamicForTest(session, members);
 		session.close();
-		return null;
+		return list;
 	}
 
 }

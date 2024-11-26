@@ -37,6 +37,9 @@ public class DynamicForTestServlet extends HttpServlet {
 
 		MemberService service = new MemberService();
 		ArrayList<Member> list = service.selDynamicForTest(members);
+
+		request.setAttribute("memberList", list);
+		request.getRequestDispatcher("/views/dynamicForTest.jsp").forward(request, response);
 	}
 
 	/**
