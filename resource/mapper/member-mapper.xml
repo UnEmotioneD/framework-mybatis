@@ -141,14 +141,14 @@
 	parameterType="map"
 	resultType="kr.or.iei.member.model.vo.MemberPageData">
 	select 
-		member_no    as memberNo,
-		member_id    as memberId,
-		member_pw    as memberPw,
-		member_name  as memberName,
-		member_email as memberEmail,
-		member_phone as memberPhone,
-		member_level as memberLevel,
-		enroll_date  as enrollDate
+		member_no    as "memberNo",
+		member_id    as "memberId",
+		member_pw    as "memberPw",
+		member_name  as "memberName",
+		member_email as "memberEmail",
+		member_phone as "memberPhone",
+		member_level as "memberLevel",
+		enroll_date  as "enrollDate"
 	from (
 		select rownum as rnum, a.*
 		from (
@@ -173,10 +173,40 @@
 	select count(*) from tbl_member
 	</select>
 	
-	<update id="chgMemberLevel">
+	<update id="chgMemberLevel"
+	parameterType="member">
 	update tbl_member
-		set member_level = ?
-	where member_no = ?
+		set member_level = #{memberLevel}
+	where member_no = #{memberNo}
 	</update>
 
+	<select id="selDynamicIfTest"
+	parameterType="member"
+	resultType="member">
+	select
+		<if test="sFlag1 != null and sFlag1 == 'on'">
+		member_no    as "memberNo",
+		</if>
+		<if test="sFlag2 != null and sFlag2 == 'on'">
+		member_id    as "memberId",
+		</if>
+		<if test="sFlag3 != null and sFlag3 == 'on'">
+		member_name  as "memberName",
+		</if>
+		<if test="sFlag4 != null and sFlag4 == 'on'">
+		member_email as "memberEmail",
+		</if>
+		<if test="sFlag5 != null and sFlag5 == 'on'">
+		member_phone as "memberPhone",
+		</if>
+		<!-- (,) 때문에 SQL 오류가 발생하니까 임의의 literal 값을 쿼리한다 -->
+		'a'
+		<!-- select 'a' from tbl_member 를 해도 결과는 'A' 컬럼에 데이터는 a 로 조회 된다 -->
+		<!-- 바인딩이 되지 않는 데이터는 그냥 안되는대로 오류가 방생하지 않는다 -->
+	from tbl_member
+	</select>
+	
+	<select id="selectDynamicForTest"
+	parameterType="map"></select>
+	
 </mapper>
