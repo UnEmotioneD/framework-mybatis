@@ -1,6 +1,7 @@
 package kr.or.iei.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.iei.member.model.service.MemberService;
-import kr.or.iei.member.model.vo.MemberPageData;
+import kr.or.iei.member.model.vo.Member;
 
 /**
- * Servlet implementation class AllMemberPageServlet
+ * Servlet implementation class AdminPageServlet
  */
-@WebServlet("/member/allMemberPage")
-public class AllMemberPageServlet extends HttpServlet {
+@WebServlet("/member/adminPage")
+public class AdminPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AllMemberPageServlet() {
+	public AdminPageServlet() {
 		super();
 	}
 
@@ -31,14 +32,12 @@ public class AllMemberPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int reqPage = request.getParameter("reqPage") != null ? Integer.parseInt(request.getParameter("reqPage")) : 1;
-		
+
 		MemberService service = new MemberService();
-		MemberPageData pd = service.selectAllMemberPage(reqPage);
-		
-		request.setAttribute("memberList", pd.getList());
-		request.setAttribute("pageNavi", pd.getPageNavi());
-		request.getRequestDispatcher("/WEB-INF/views/member/allMemberPage.jsp").forward(request, response);
+		ArrayList<Member> list = service.selectAllMember();
+
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/WEB-INF/views/member/adminPage.jsp").forward(request, response);
 	}
 
 	/**

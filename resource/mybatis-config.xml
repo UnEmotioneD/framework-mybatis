@@ -6,6 +6,11 @@
 		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 
+	<typeAliases>
+		<typeAlias type="kr.or.iei.member.model.vo.Member"
+			alias="member" />
+	</typeAliases>
+
 	<environments default="development">
 		<environment id="development">
 			<!-- 개발자가 commit rollback 을 관리하겠다는 뜼 -->

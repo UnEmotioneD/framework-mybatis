@@ -36,14 +36,19 @@
 			<a href="/member/loginFrm">로그인 페이지로 이동</a>
 		</h3>
 	</c:if>
-	<c:if test="${not empty sessionScope.loginMember}">
-		<h3>${sessionScope.loginMember.memberName}님환영합니다</h3>
-		<ul>
+	<ul>
+		<c:if test="${not empty sessionScope.loginMember}">
+			<h3>${sessionScope.loginMember.memberName}님환영합니다</h3>
 			<li><a href="/member/allMember">전체 회원 조회</a></li>
 			<li><a href="/member/myPage">마이페이지</a></li>
 			<li><a href="/member/logout">로그아웃</a></li>
-			<li><a href="/member/allMemberPage?reqPage=1">전체회원조회(페이징)</a></li>
-		</ul>
-	</c:if>
+			<li><a href="/member/allMemberPage?reqPage=1">전체 회원 조회 (페이징)</a></li>
+
+			<%-- 관리자 페이지는 회원 레벨이 1일 때만 표시 --%>
+			<c:if test="${sessionScope.loginMember.memberLevel == 1}">
+				<li><a href="/member/adminPage">관리자 페이지</a></li>
+			</c:if>
+		</c:if>
+	</ul>
 </body>
 </html>

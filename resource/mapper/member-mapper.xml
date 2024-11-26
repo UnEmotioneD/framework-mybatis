@@ -28,14 +28,15 @@
 			!!! "$" 를 이용해서 테이블명, 컬럼명을 동적으로 바꿀 수 있다 !!!
 			
 		3) SQL 문 마지막에 semi-colon(;) 은 작성 하지 않는다
+		4) parameterType 에서 별칭을 사용할려면 mybatis-config.xml 에서 typeAliases 설정을 해야함
 	-->
 
 	<!-- src/main/java 까지는 기본으로 잡힘 -->
 	<!-- resultType == 실행 결과를 Member 객체로 묶어서 보낸다 -->
 	
 	<select id="selectOneMember"
-		parameterType="kr.or.iei.member.model.vo.Member"
-		resultType="kr.or.iei.member.model.vo.Member">
+		parameterType="member"
+		resultType="member">
 		select
 			member_no    as "memberNo",
 			member_id    as "memberId",
@@ -55,7 +56,7 @@
 		INSERT 의 결과는 항상 정수값이므로 resultType 생략
 	-->
 	<insert id="insertMember"
-		parameterType="kr.or.iei.member.model.vo.Member">
+		parameterType="member">
 		insert into tbl_member 
 		(
 			member_no, 
@@ -85,7 +86,7 @@
 	<!-- 전달 받는 파라미터가 없음 -->
 	<!-- resultType : 리스트로 반환되는 객체 자료형 -->
 	<select id="selectAllMember"
-	resultType="kr.or.iei.member.model.vo.Member">
+	resultType="member">
 	select 
 		member_no    as "memberNo",
 		member_id    as "memberId",
@@ -101,7 +102,7 @@
 	</select>
 	
 	<update id="updateMember"
-	parameterType="kr.or.iei.member.model.vo.Member">
+	parameterType="member">
 	update tbl_member
 		set
 			member_pw = #{memberPw}, 
@@ -132,20 +133,24 @@
 	delete from tbl_member where member_no = #{_string}
 	</delete>
 	
+	<!-- 전체 회원 조회(페이징)
+	DAO 에서 전달한 파라미터 자료형이, HashMap 일 떄
+	parameterType 에 map 또는 hashmap 적성
+	 -->
 	<select id="selectAllMemberPage"
 	parameterType="map"
 	resultType="kr.or.iei.member.model.vo.MemberPageData">
 	select 
-		member_no    as "memberNo",
-		member_id    as "memberId",
-		member_pw    as "memberPw",
-		member_name  as "memberName",
-		member_email as "memberEmail",
-		member_phone as "memberPhone",
-		member_level as "memberLevel",
-		enroll_date  as "enrollDate"
+		member_no    as memberNo,
+		member_id    as memberId,
+		member_pw    as memberPw,
+		member_name  as memberName,
+		member_email as memberEmail,
+		member_phone as memberPhone,
+		member_level as memberLevel,
+		enroll_date  as enrollDate
 	from (
-		select rownum as "rnum", a.*
+		select rownum as rnum, a.*
 		from (
 		select
 			member_no,
@@ -162,5 +167,16 @@
 	) a
 	where rnum between #{start} and #{end}
 	</select>
+	
+	<select id="selectTotalCount"
+	resultType="_int">
+	select count(*) from tbl_member
+	</select>
+	
+	<update id="chgMemberLevel">
+	update tbl_member
+		set member_level = ?
+	where member_no = ?
+	</update>
 
 </mapper>

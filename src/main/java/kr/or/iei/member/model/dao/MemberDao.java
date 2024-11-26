@@ -1,6 +1,5 @@
 package kr.or.iei.member.model.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,7 +41,7 @@ public class MemberDao {
 	}
 
 	public int selectTotalCount(SqlSession session) {
-		return session.select
+		return session.selectOne("member.selectTotalCount");
 	}
 
 }
