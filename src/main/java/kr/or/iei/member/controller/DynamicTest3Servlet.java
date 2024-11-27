@@ -46,8 +46,6 @@ public class DynamicTest3Servlet extends HttpServlet {
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i).toString());
 		}
-
-		request.getRequestDispatcher("/views/dynamicQueryTest.jsp").forward(request, response);
 	}
 
 	/**
