@@ -13,16 +13,16 @@ import kr.or.iei.member.model.service.MemberService;
 import kr.or.iei.member.model.vo.Member;
 
 /**
- * Servlet implementation class DynamicTest1Servlet
+ * Servlet implementation class DynamicTest3Servlet
  */
-@WebServlet("/member/dynamic/test1")
-public class DynamicTest1Servlet extends HttpServlet {
+@WebServlet("/member/dynamic/test3")
+public class DynamicTest3Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public DynamicTest1Servlet() {
+	public DynamicTest3Servlet() {
 		super();
 	}
 
@@ -35,20 +35,17 @@ public class DynamicTest1Servlet extends HttpServlet {
 
 		String sFlag1 = request.getParameter("sFlag1");
 		String sFlag2 = request.getParameter("sFlag2");
-		String sFlag3 = request.getParameter("sFlag3");
-		String sFlag4 = request.getParameter("sFlag4");
-		
+
 		Member member = new Member();
 		member.setSFlag1(sFlag1);
 		member.setSFlag2(sFlag2);
-		member.setSFlag3(sFlag3);
-		member.setSFlag4(sFlag4);
-		
+
 		MemberService service = new MemberService();
-		ArrayList<Member> list = service.selDynamicTest1(member);
-		
-		request.setAttribute("memberList", list);
-		request.getRequestDispatcher("/views/dynamicTest1.jsp").forward(request, response);
+		ArrayList<Member> list = service.selDynamicTest3(member);
+
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).toString());
+		}
 	}
 
 	/**

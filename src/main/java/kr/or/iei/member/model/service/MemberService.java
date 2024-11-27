@@ -179,4 +179,18 @@ public class MemberService {
 		return list;
 	}
 
+	public ArrayList<Member> selDynamicTest2(String sFlag1) {
+		SqlSession session = SqlSessionTemplate.getSqlsession();
+		ArrayList<Member> list = (ArrayList<Member>) dao.selDynamicTest2(session, sFlag1);
+		session.close();
+		return list;
+	}
+
+	public ArrayList<Member> selDynamicTest3(Member member) {
+		SqlSession session = SqlSessionTemplate.getSqlsession();
+		ArrayList<Member> list = (ArrayList<Member>) dao.selDynamicTest3(session, member);
+		session.close();
+		return list;
+	}
+
 }

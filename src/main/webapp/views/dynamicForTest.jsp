@@ -8,7 +8,7 @@
 <title>dynamicForTest.jsp</title>
 </head>
 <body>
-	<h1>회원 관리 - 전체 회원 조회</h1>
+	<h1>회원 관리 - for test</h1>
 
 	<hr>
 

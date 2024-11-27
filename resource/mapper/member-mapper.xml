@@ -287,18 +287,62 @@
 	<!-- 제일 앞에 'where' 를 자동으로 입력해 준다 -->
 	<where>
 		<if test="sFlag1 != null and sFlag1 != ''">
-		or member_addr like '%'|| 서울 ||'%'
+		or member_addr like '%'|| #{sFlag1} ||'%'
 		</if>
 		<if test="sFlag2 != null and sFlag2 != ''">
-		or member_addr like '%'|| 경기 ||'%'
+		or member_addr like '%'|| #{sFlag2} ||'%'
 		</if>
 		<if test="sFlag3 != null and sFlag3 != ''">
-		or member_addr like '%'|| 부산 ||'%'
+		or member_addr like '%'|| #{sFlag3} ||'%'
 		</if>
 		<if test="sFlag4 != null and sFlag4 != ''">
-		or member_addr like '%'|| 목포 ||'%'
+		or member_addr like '%'|| #{sFlag4} ||'%'
 		</if>
 	</where>
+	</select>
+	
+	<select id="selDynamicTest2"
+	parameterType="string"
+	resultType="member">
+	select
+		member_no    as "memberNo",
+		member_id    as "memberId",
+		member_pw    as "memberPw",
+		member_name  as "memberName",
+		member_email as "memberEmail",
+		member_phone as "memberPhone",
+		member_addr  as "memberAddr",
+		member_level as "memberLevel",
+		<if test="sFlag1 != null and sFlag1 == 'selected'">
+		level_name   as "levelName",
+		</if>
+		enroll_date  as "enrollDate"
+	from tbl_member
+		<if test="sFlag1 != null and sFlag1 == 'selected'">
+		join tbl_level on (member_level = level_code)
+		</if>
+	</select>
+	
+	<select id="selDynamicTest3"
+	parameterType="member"
+	resultType="member">
+	select
+		member_no    as "memberNo",
+		member_id    as "memberId",
+		member_pw    as "memberPw",
+		member_name  as "memberName",
+		member_email as "memberEmail",
+		member_phone as "memberPhone",
+		member_addr  as "memberAddr",
+		member_level as "memberLevel",
+		enroll_date  as "enrollDate"
+	from tbl_member
+	<if test="sFlag1 != null and sFlag1 != ''">
+		<if test="sFlag2 != null and sFlag2 != ''">
+		where ${sFlag1} like '%'|| #{sFlag2} ||'%'
+		</if>
+	order by ${sFlag1}
+	</if>
 	</select>
 	
 </mapper>

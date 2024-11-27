@@ -74,4 +74,12 @@ public class MemberDao {
 		return session.selectList("member.selDynamicTest1", member);
 	}
 
+	public List<Member> selDynamicTest2(SqlSession session, String sFlag1) {
+		return session.selectList("member.selDynamicTest2", sFlag1);
+	}
+
+	public List<Member> selDynamicTest3(SqlSession session, Member member) {
+		return session.selectList("member.selDynamicTest3", member);
+	}
+
 }

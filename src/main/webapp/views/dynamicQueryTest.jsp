@@ -80,5 +80,33 @@
 			type="submit" value="조회">
 	</form>
 
+	<hr>
+
+	<h3>Dynamic Test - 2</h3>
+
+	<form action="/member/dynamic/test2" method="get">
+		<h4>등급 체크체크박스 체크 시 등급명 포함 조회</h4>
+
+		<input type="checkbox" name="sFlag1"> 등급명 포함 조회 <input
+			type="submit" value="조회">
+	</form>
+
+	<hr>
+
+	<h3>Dynamic Test - 3</h3>
+
+	<form action="/member/dynamic/test3" method="get">
+		<h4>체크한 조건 and 검색어를 포함하는 회원 조회</h4>
+		<%-- 체크한 조건 컬럼명 기준으로 오름차순 정렬하여 출력 --%>
+
+		<%-- mapping.xml 에서 쿼리에 갖가가 쓸려고 컬럼명과 동일하게 작성 --%>
+		<input type="radio" name="sFlag1" value="member_name"> 이름 <input
+			type="radio" name="sFlag1" value="member_addr"> 주소 <input
+			type="radio" name="sFlag1" value="member_phone"> 전화번호 <br>
+
+		입력값 : <input type="text" name="sFlag2"> <input type="submit"
+			value="조회">
+	</form>
+
 </body>
 </html>

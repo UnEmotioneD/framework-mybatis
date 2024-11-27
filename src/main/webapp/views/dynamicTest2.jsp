@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>dynamicChooseTest.jsp</title>
+<title>dynamicTest2.jsp</title>
 </head>
 <body>
-	<h1>회원 관리 - choose test</h1>
+	<h1>회원 관리 - 등급명과 같이 조회</h1>
 
 	<hr>
 

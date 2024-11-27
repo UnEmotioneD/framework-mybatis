@@ -27,4 +27,7 @@ public class Member {
 	private String sFlag6;
 	private String sFlag7;
     // .setSFlag$(), .getSFlag$() 
+	
+	private String levelCode;
+	private String levelName;
 }

@@ -62,8 +62,6 @@ insert into tbl_member values ( seq_member.nextval, 'user81', '1234', '유저81'
 insert into tbl_member values ( seq_member.nextval, 'user82', '1234', '유저82', 'test82@naver.com', '010-1234-1234', '부산광역시 해운대구', 2, sysdate);
 insert into tbl_member values ( seq_member.nextval, 'user83', '1234', '유저83', 'test83@naver.com', '010-1234-1234', '경기 성남시 분당구', 2, sysdate);
 
-commit;
-
 select * 
     from tbl_member
 where to_char(enroll_date, 'yyyymmdd') = to_char(sysdate, 'yyyymmdd');
@@ -82,3 +80,61 @@ select *
     or member_addr like '%부산%';
     
 -- 전부 체크하고서 조회 : 전부 or 로 연결
+
+create table tbl_level (
+    level_code number primary key,
+    level_name varchar2(20)
+);
+
+insert into tbl_level values (1, '관리자');
+insert into tbl_level values (2, '정회원');
+insert into tbl_level values (3, '준회원');
+
+select * 
+    from tbl_member, tbl_level 
+    where member_level = level_code;
+
+-- join
+select * 
+    from tbl_member
+    join tbl_level on (member_level = level_code);
+    
+-- sub query
+select a.*,
+        (select level_name from tbl_level z where z.level_code = a.member_level) level_name
+    from tbl_member a;
+    
+create table tbl_board (
+    board_no number primary key,
+    board_title varchar2(100) not null,
+    board_content varchar2(2000) not null,
+    borad_writer number references tbl_member(member_no) on delete cascade,
+    read_count number default 0,
+    reg_date date default sysdate
+);
+
+create sequence seq_board;
+
+create or replace procedure tbl_board_ins_procedure as
+begin
+    for i in 1..153 loop
+        insert into tbl_board values
+        (
+            seq_board.nextval,
+            'title' || i,
+            'content' || i,
+            1,
+            default, 
+            default
+        );
+    end loop;
+    commit;
+end;
+/
+
+begin
+    tbl_board_ins_procedure;
+end;
+/
+
+select * from tbl_member order by 1;
