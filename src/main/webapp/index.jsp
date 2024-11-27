@@ -48,6 +48,7 @@
 			</c:if>
 			<li><a href="/views/dynamicQueryTest.jsp">MyBatis 동적 쿼리 테스트</a>
 			</li>
+			<li><a href="/board/getList?reqPage=1">게시판 목록으로</a></li>
 		</ul>
 	</c:if>
 </body>

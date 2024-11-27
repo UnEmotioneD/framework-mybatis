@@ -1,5 +1,8 @@
 drop table tbl_member;
+drop table tbl_board;
+
 drop sequence seq_member;
+drop sequence seq_board;
 
 create table tbl_member (
     member_no number primary key,
@@ -108,7 +111,7 @@ create table tbl_board (
     board_no number primary key,
     board_title varchar2(100) not null,
     board_content varchar2(2000) not null,
-    borad_writer number references tbl_member(member_no) on delete cascade,
+    board_writer number references tbl_member(member_no) on delete cascade,
     read_count number default 0,
     reg_date date default sysdate
 );
@@ -137,4 +140,6 @@ begin
 end;
 /
 
-select * from tbl_member order by 1;
+select * from tbl_board;
+
+commit;

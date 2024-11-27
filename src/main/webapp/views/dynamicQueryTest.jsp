@@ -1,7 +1,7 @@
+<%@page import="kr.or.iei.member.model.vo.Member"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.or.iei.member.model.vo.MemberPageData"%>
 <%@page import="kr.or.iei.member.model.service.MemberService"%>
-<%@page import="kr.or.iei.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

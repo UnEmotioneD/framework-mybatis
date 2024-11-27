@@ -8,10 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class Board {
+	private String rNum;
 	private String boardNo;
 	private String boardTitle;
 	private String boardContent;
-	private String boardWrite;
+	private String boardWriter;
 	private String readCount;
 	private String regDate;
 }
