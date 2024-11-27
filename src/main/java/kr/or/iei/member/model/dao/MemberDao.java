@@ -23,7 +23,7 @@ public class MemberDao {
 		return session.insert("member.insertMember", member);
 	}
 
-	// 결과는 0개, 1개 또는 여러개
+	// 결과는 0개 또는 1개 또는 여러개
 	public List<Member> selectAllMember(SqlSession session) {
 		return session.selectList("member.selectAllMember");
 	}
@@ -54,6 +54,24 @@ public class MemberDao {
 
 	public List<Member> selDynamicForTest(SqlSession session, String[] members) {
 		return session.selectList("member.selDynamicForTest", members);
+	}
+
+	public List<Member> selDynamicChooseTest(SqlSession session, HashMap<String, String> map) {
+		// ex1) 사용자 입력값 :
+		// 아이디로 검색(id), 검색어(keyword) ==> 결과 row 갯수 0 or 1 ==> good
+		// 이름으로 검색(name), 검색어(keyword) ==> 결과 row 갯수 0 or 1 or many ==> good
+
+		// ex2) 사용자 입력값 :
+		// 아이디로 검색(id), 검색어(keyword) ==> 결과 row 갯수 0 or 1 ==> good
+		// 이름으로 검색(name), 검색어(keyword) ==> 결과 row 갯수 0 or 1 or many ==> not good
+
+		// 사용자가 아이디로 검색하면 일치하는 회원만 조회
+		// 이름으로 조회하면 like 를 이용해서 포함하는 회원을 조회
+		return session.selectList("member.selDynamicChooseTest", map);
+	}
+
+	public List<Member> selDynamicTest1(SqlSession session, Member member) {
+		return session.selectList("member.selDynamicTest1", member);
 	}
 
 }

@@ -237,4 +237,68 @@
 	</foreach>
 	</select>
 	
+	<!--
+		select == 'id' == 입력한 keyword 와 일치하는 아이디
+		select == 'name' == 입력한 keyword 를 포함하는 이름
+	 -->
+	<select id="selDynamicChooseTest"
+	parameterType="map"
+	resultType="member">
+	select
+		member_no    as "memberNo",
+		member_id    as "memberId",
+		member_pw    as "memberPw",
+		member_name  as "memberName",
+		member_email as "memberEmail",
+		member_phone as "memberPhone",
+		member_addr  as "memberAddr",
+		member_level as "memberLevel",
+		enroll_date  as "enrollDate"
+	from tbl_member
+	<choose>
+		<when test="select != null and select == 'id'">
+		where member_id = #{keyword}
+		</when>
+		<!-- otherwise 를 작성하는거보다 when 을 쓰는게 안정성이 높음 -->
+		<when test="select != null and select == 'name'">
+		where member_name like '%' || #{keyword} || '%'
+		</when>
+	</choose>
+	</select>
+	
+	<!-- 
+		서울, 경기, 부산, 목표 페크박스를 생성하고, 체크한 지역에 거주하는 회원 리스트 조회
+		첫번째 작성되는 조건식 앞에 'where' 절이 자동으로 삽입된다
+	 -->
+	<select id="selDynamicTest1"
+	parameterType="member"
+	resultType="member">
+	select
+		member_no    as "memberNo",
+		member_id    as "memberId",
+		member_pw    as "memberPw",
+		member_name  as "memberName",
+		member_email as "memberEmail",
+		member_phone as "memberPhone",
+		member_addr  as "memberAddr",
+		member_level as "memberLevel",
+		enroll_date  as "enrollDate"
+	from tbl_member
+	<!-- 제일 앞에 'where' 를 자동으로 입력해 준다 -->
+	<where>
+		<if test="sFlag1 != null and sFlag1 != ''">
+		or member_addr like '%'|| 서울 ||'%'
+		</if>
+		<if test="sFlag2 != null and sFlag2 != ''">
+		or member_addr like '%'|| 경기 ||'%'
+		</if>
+		<if test="sFlag3 != null and sFlag3 != ''">
+		or member_addr like '%'|| 부산 ||'%'
+		</if>
+		<if test="sFlag4 != null and sFlag4 != ''">
+		or member_addr like '%'|| 목포 ||'%'
+		</if>
+	</where>
+	</select>
+	
 </mapper>

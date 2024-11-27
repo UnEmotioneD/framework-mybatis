@@ -18,12 +18,11 @@
 
 	<h3>IF Test</h3>
 	<form action="/member/dynamic/ifTest" method="post">
-		<input type="checkbox" name="chkNo">    No 
-		<input type="checkbox" name="chkId">    ID 
-		<input type="checkbox" name="chkName">  Name 
-		<input type="checkbox" name="chkEmail"> Email 
-		<input type="checkbox" name="chkPhone"> Phone 
-		<input type="submit" value="회원정보 조회">
+		<input type="checkbox" name="chkNo"> No <input type="checkbox"
+			name="chkId"> ID <input type="checkbox" name="chkName">
+		Name <input type="checkbox" name="chkEmail"> Email <input
+			type="checkbox" name="chkPhone"> Phone <input type="submit"
+			value="회원정보 조회">
 	</form>
 
 	<hr>
@@ -53,6 +52,32 @@
 				<th colspan="2"><input type="submit" value="조회"></th>
 			</tr>
 		</table>
+	</form>
+
+	<hr>
+
+	<h3>CHOOSE Test</h3>
+
+	<form action="/member/dynamic/chooseTest" method="get">
+		<input type="radio" name="select" value="id"> 아이디로 검색 <input
+			type="radio" name="select" value="name">이름으로 검색 <input
+			type="text" name="keyword"> <input type="submit" value="검색">
+	</form>
+
+	<hr>
+
+	<h3>Dynamic Test - 1</h3>
+
+	<hr>
+
+	<form action="/member/dynamic/test1" method="get">
+		<h4>체크한 지역에 거주하는 회원 리스트 조회</h4>
+
+		<input type="checkbox" name="sFlag1" value="서울">서울 <input
+			type="checkbox" name="sFlag2" value="경기">경기 <input
+			type="checkbox" name="sFlag3" value="부산">부산 <input
+			type="checkbox" name="sFlag4" value="목포">목포 <input
+			type="submit" value="조회">
 	</form>
 
 </body>

@@ -162,4 +162,21 @@ public class MemberService {
 		return list;
 	}
 
+	public ArrayList<Member> selDynamicChooseTest(String select, String keyword) {
+		SqlSession session = SqlSessionTemplate.getSqlsession();
+		HashMap<String, String> map = new HashMap<>();
+		map.put("select", select);
+		map.put("keyword", keyword);
+		ArrayList<Member> list = (ArrayList<Member>) dao.selDynamicChooseTest(session, map);
+		session.close();
+		return list;
+	}
+
+	public ArrayList<Member> selDynamicTest1(Member member) {
+		SqlSession session = SqlSessionTemplate.getSqlsession();
+		ArrayList<Member> list = (ArrayList<Member>) dao.selDynamicTest1(session, member);
+		session.close();
+		return list;
+	}
+
 }
