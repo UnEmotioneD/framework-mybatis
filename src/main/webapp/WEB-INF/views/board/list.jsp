@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>list.jsp</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 	<h1>게시글 - 전체 게시글 조회(페이징)</h1>
@@ -53,10 +54,29 @@
 				selected
 				</c:if>>
 				작성자</option>
-		</select> 
-		<input type="text" name="searchKeyword" value="${searchKeyword}">
+		</select> <input type="text" name="searchKeyword" value="${searchKeyword}">
 		<input type="submit" value="조회">
 	</form>
 
+	<script>
+		window.addEventListener('pageshow', function(event) {
+			console.log("list.jsp");
+			if (event.persisted) {
+				$.ajax({
+					url : "/board/backHistory",
+					method : "get",
+					data : {
+						pageId : "detailView"
+					},
+					success : function(res) {
+						console.log("removed from session");
+					},
+					error : function() {
+						console.log("ajax error");
+					}
+				});
+			}
+		});
+	</script>
 </body>
 </html>

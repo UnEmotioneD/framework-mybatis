@@ -55,7 +55,6 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("loginMember", loginMember);
-			
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 	}

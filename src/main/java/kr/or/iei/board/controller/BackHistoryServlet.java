@@ -1,6 +1,7 @@
 package kr.or.iei.board.controller;
 
 import java.io.IOException;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.or.iei.board.model.service.BoardService;
-import kr.or.iei.board.model.vo.Board;
-
 /**
- * Servlet implementation class BoardDetailServlet
+ * Servlet implementation class BackHistoryServlet
  */
-@WebServlet("/board/detail")
-public class DetailViewServlet extends HttpServlet {
+@WebServlet("/board/backHistory")
+public class BackHistoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public DetailViewServlet() {
+	public BackHistoryServlet() {
 		super();
 	}
 
@@ -33,20 +31,24 @@ public class DetailViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		System.out.println("Start from BackHistoryServlet");
+
 		HttpSession session = request.getSession(false);
-		String pageId = "detailView";
-		session.setAttribute("pageId", pageId);
+		String pageId = request.getParameter("pageId");
 
-		String boardNo = request.getParameter("boardNo");
-
-		BoardService service = new BoardService();
-
-		String pageGb = request.getParameter("pageGb");
+		int result = 0;
 		
-		Board board = service.selectOneBoard(boardNo, pageGb);
+		if (session != null) {
+			Set<String> viewedPages = (Set<String>) session.getAttribute("pageId");
+			if (viewedPages != null && pageId != null) {
+				viewedPages.remove(pageId);
+				result = 1;
+			}
+		}
 
-		request.setAttribute("board", board);
-		request.getRequestDispatcher("/WEB-INF/views/board/detailView.jsp").forward(request, response);
+		System.out.println("End from BackHistoryServlet");
+
+		response.getWriter().print(result);
 	}
 
 	/**
