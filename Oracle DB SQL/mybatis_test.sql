@@ -65,6 +65,7 @@ insert into tbl_member values ( seq_member.nextval, 'user81', '1234', '유저81'
 insert into tbl_member values ( seq_member.nextval, 'user82', '1234', '유저82', 'test82@naver.com', '010-1234-1234', '부산광역시 해운대구', 2, sysdate);
 insert into tbl_member values ( seq_member.nextval, 'user83', '1234', '유저83', 'test83@naver.com', '010-1234-1234', '경기 성남시 분당구', 2, sysdate);
 
+-- 오늘 가입한 회원 조회
 select * 
     from tbl_member
 where to_char(enroll_date, 'yyyymmdd') = to_char(sysdate, 'yyyymmdd');
