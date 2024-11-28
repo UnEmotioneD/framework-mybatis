@@ -68,8 +68,6 @@
 
 	<h3>Dynamic Test - 1</h3>
 
-	<hr>
-
 	<form action="/member/dynamic/test1" method="get">
 		<h4>체크한 지역에 거주하는 회원 리스트 조회</h4>
 
