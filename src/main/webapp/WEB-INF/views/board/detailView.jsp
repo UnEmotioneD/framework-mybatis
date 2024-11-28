@@ -32,8 +32,7 @@
 				<th>내용</th>
 				<td>${board.boardContent}</td>
 			</tr>
-			<c:if
-				test="${board.boardWriter eq loginMmeber.memberId}">
+			<c:if test="${board.boardWriter eq loginMember.memberId}">
 				<tr>
 					<td colspan="2"><a
 						href="/board/updateForm?boardNo=${board.boardNo}">수정하기</a></td>

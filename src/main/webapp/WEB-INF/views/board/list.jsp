@@ -53,7 +53,8 @@
 				selected
 				</c:if>>
 				작성자</option>
-		</select> <input type="text" name="searchKeyword" value="${searchKeyword}">
+		</select> 
+		<input type="text" name="searchKeyword" value="${searchKeyword}">
 		<input type="submit" value="조회">
 	</form>
 

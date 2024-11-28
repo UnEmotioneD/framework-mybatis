@@ -16,13 +16,15 @@
 		<table border=1>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="boardTitle"
-					value="${board.boardTitle}"></td>
+				<td>
+					<input type="text" name="boardTitle" value="${board.boardTitle}">
+				</td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><input type="text" name="boardContent"
-					value="${board.boardContent}"></td>
+				<td>
+					<input type="text" name="boardContent" value="${board.boardContent}">
+				</td>
 			</tr>
 			<tr>
 				<th>조회수</th>
