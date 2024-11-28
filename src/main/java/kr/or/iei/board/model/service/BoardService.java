@@ -38,7 +38,7 @@ public class BoardService {
 		ArrayList<Board> list = (ArrayList<Board>) dao.selectBoradList(session, map);
 
 		/*
-		 * 사용자가 조건 입력시 조건에 부함하는 게시글의 갯수를 조회
+		 * 사용자가 조건 입력시 조건에 부합하는 게시글의 갯수를 조회
 		 */
 		int totCnt = dao.selectTotalCount(session, map);
 		int totPage = 0;
@@ -73,7 +73,7 @@ public class BoardService {
 		}
 
 		if (pageNo <= totPage) {
-			pageNavi += "<a href='/board/getList?reqPage=" + (pageNo + 1) + searchParam + "'>다음</a>";
+			pageNavi += "<a href='/board/getList?reqPage=" + pageNo + searchParam + "'>다음</a>";
 		}
 
 		BoardPageData pd = new BoardPageData();
