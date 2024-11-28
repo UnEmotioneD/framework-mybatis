@@ -26,7 +26,7 @@ public class BoardService {
 		int end = reqPage * viewBoardCnt;
 		int start = end - viewBoardCnt + 1;
 
-		// String, Interger 에서 검색어도 전달하기 위해서 String 으로 변경
+		// String, Integer 에서 검색어도 전달하기 위해서 String 으로 변경
 		HashMap<String, String> map = new HashMap<>();
 		// 변수의 값을 String 으로 변환시켜줌
 		map.put("start", String.valueOf(start));
@@ -97,17 +97,46 @@ public class BoardService {
 		return result;
 	}
 
-	public Board selectOneBoard(String boardNo) {
+	public Board selectOneBoard(String boardNo, String pageGb) {
 		SqlSession session = SqlSessionTemplate.getSqlsession();
+
+		int result = 1;
+
+		// 게시글 목록에서 제목을 클릭하여 상세보기 페이지로 이동 시: pageGb == select
+		// 게시글 상세보기에서 수정하기 페이지로 이동 시: pageGb == update
+		// 수정하기 페이지에서 수정 완료후 상세보기로 이동시: pageGb == update
+		if (pageGb.equals("select")) {
+			result = dao.updateReadCount(session, boardNo);
+
+			if (result > 0) {
+				session.commit();
+			} else {
+				session.rollback();
+			}
+		}
+
 		Board board = null;
-		if (dao.updateReadCount(session, boardNo) > 0) {
+
+		// result 가 1 인 경우 (select 이고, 정상 업데이트 되었을때 또는 update 일때)
+		if (result > 0) {
 			board = dao.selectOneBoard(session, boardNo);
+		}
+
+		session.close();
+		return board;
+	}
+
+	public int updateBoard(Board board) {
+		SqlSession session = SqlSessionTemplate.getSqlsession();
+		int result = dao.updateBoard(session, board);
+
+		if (result > 0) {
 			session.commit();
 		} else {
 			session.rollback();
 		}
 		session.close();
-		return board;
+		return result;
 	}
 
 }

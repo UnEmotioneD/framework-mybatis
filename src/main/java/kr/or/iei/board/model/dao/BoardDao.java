@@ -29,4 +29,8 @@ public class BoardDao {
 		return session.update("board.updateReadCount", boardNo);
 	}
 
+	public int updateBoard(SqlSession session, Board board) {
+		return session.update("board.updateBoard", board);
+	}
+
 }

@@ -16,13 +16,13 @@ import kr.or.iei.member.model.vo.Member;
  * Servlet implementation class UpdateServlet
  */
 @WebServlet("/member/update")
-public class UpdateServlet extends HttpServlet {
+public class MemberUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UpdateServlet() {
+	public MemberUpdateServlet() {
 		super();
 	}
 

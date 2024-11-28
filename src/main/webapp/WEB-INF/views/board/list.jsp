@@ -24,13 +24,15 @@
 				<th>번호</th>
 				<th>제목</th>
 				<th>작성자</th>
+				<th>조회수</th>
 			</tr>
 			<c:forEach var="b" items="${boardList}">
 				<tr>
 					<td><input type="checkbox" name="delNo" value="${b.boardNo}"></td>
 					<td>${b.RNum}</td>
-					<td><a href="/board/detail?boardNo=${b.boardNo}">${b.boardTitle}</a></td>
+					<td><a href="/board/detail?boardNo=${b.boardNo}&pageGb=select">${b.boardTitle}</a></td>
 					<td>${b.boardWriter}</td>
+					<td>${b.readCount}</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -39,7 +41,7 @@
 	<h4>${pageNavi}</h4>
 
 	<%-- 
-		 게시글 목록 페이지에서 아래와 같이 검색하면
+    	게시글 목록 페이지에서 아래와 같이 검색하면
 		조건에 부함하는 게시글 목록을 조회해서 다시 현재 페이지로 응답해주어야 함
 		기존 index.jsp 에서 게시판 목록을 요청했을 때 작성한 URL과 동일한 URL로 요청하여 재검색
 	 --%>

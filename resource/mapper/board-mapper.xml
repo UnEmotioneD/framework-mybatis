@@ -85,8 +85,16 @@
 	<update id="updateReadCount"
 	parameterType="string" >
 	update tbl_board 
-	set read_count = read_count + 1
+		set read_count = read_count + 1
 	where board_no = #{boardNo} 
+	</update>
+	
+	<update id="updateBoard"
+	parameterType="board">
+	update tbl_board
+		set board_title = #{boardTitle},
+			board_content = #{boardContent}
+	where board_no = #{boardNo}
 	</update>
 
 </mapper>

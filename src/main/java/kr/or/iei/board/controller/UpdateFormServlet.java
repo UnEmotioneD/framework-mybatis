@@ -12,16 +12,16 @@ import kr.or.iei.board.model.service.BoardService;
 import kr.or.iei.board.model.vo.Board;
 
 /**
- * Servlet implementation class BoardDetailServlet
+ * Servlet implementation class UpdateFormServlet
  */
-@WebServlet("/board/detail")
-public class DetailViewServlet extends HttpServlet {
+@WebServlet("/board/updateForm")
+public class UpdateFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public DetailViewServlet() {
+	public UpdateFormServlet() {
 		super();
 	}
 
@@ -34,14 +34,13 @@ public class DetailViewServlet extends HttpServlet {
 
 		String boardNo = request.getParameter("boardNo");
 
-		BoardService service = new BoardService();
-
-		String pageGb = request.getParameter("pageGb");
+		String pageGb = "update";
 		
+		BoardService service = new BoardService();
 		Board board = service.selectOneBoard(boardNo, pageGb);
 
 		request.setAttribute("board", board);
-		request.getRequestDispatcher("/WEB-INF/views/board/detailView.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/board/updateForm.jsp").forward(request, response);
 	}
 
 	/**
