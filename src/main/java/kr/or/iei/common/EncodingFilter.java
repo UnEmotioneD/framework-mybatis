@@ -10,6 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpFilter;
 
+@SuppressWarnings("serial")
 public class EncodingFilter extends HttpFilter implements Filter {
 
 	/**

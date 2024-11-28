@@ -9,19 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.iei.board.model.service.BoardService;
-import kr.or.iei.board.model.vo.BoardPageData;
 
 /**
- * Servlet implementation class GetListServlet
+ * Servlet implementation class DeleteServlet
  */
-@WebServlet("/board/getList")
-public class GetListServlet extends HttpServlet {
+@WebServlet("/board/delete")
+public class DeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public GetListServlet() {
+	public DeleteServlet() {
 		super();
 	}
 
@@ -31,21 +30,25 @@ public class GetListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		int reqPage = request.getParameter("reqPage") != null ? Integer.parseInt(request.getParameter("reqPage")) : 1;
-
-		// 게시글 목록 하단에서 검색하였을 떄 전달한 파라미터
-		String srchType = request.getParameter("srchType");
-		String srchKeyword = request.getParameter("srchKeyword");
-
+		
+		// ?delNo=1&delNo=2&delNo=3... 이런 식으로 전달됨
+		String [] delNo = request.getParameterValues("delNo");
+		
 		BoardService service = new BoardService();
-		BoardPageData pd = service.selectAllBoardList(reqPage, srchType, srchKeyword);
-
-		request.setAttribute("boardList", pd.getList());
-		request.setAttribute("pageNavi", pd.getPageNavi());
-		request.setAttribute("srchType", srchType);
-		request.setAttribute("srchKeyword", srchKeyword);
-		request.getRequestDispatcher("/WEB-INF/views/board/list.jsp").forward(request, response);
+		int result = service.deleteBoard(delNo);
+		
+		if (result > 0) {
+			request.setAttribute("title", "알림");
+			request.setAttribute("text", "게시글이 삭제되었습니다");
+			request.setAttribute("icon", "success");
+		} else {
+			request.setAttribute("title", "알림");
+			request.setAttribute("text", "게시글 삭제 도중 오류가 발생");
+			request.setAttribute("icon", "error");
+		}
+			request.setAttribute("loc", "/board/getList?reqPage=1");
+			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+			
 	}
 
 	/**

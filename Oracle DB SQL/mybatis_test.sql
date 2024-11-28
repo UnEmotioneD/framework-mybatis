@@ -1,5 +1,6 @@
-drop table tbl_member;
+drop table tbl_member cascade constraints;
 drop table tbl_board;
+drop table tbl_level;
 
 drop sequence seq_member;
 drop sequence seq_board;
@@ -22,7 +23,7 @@ insert into tbl_member values
 (
     seq_member.nextval, 
     'admin',
-    '7777', 
+    '4444', 
     '관리자', 
     'test@naver.com', 
     '010-1234-1234', 
@@ -54,8 +55,6 @@ begin
     procedure_ins_member;
 end;
 /
-
-select * from tbl_member;
 
 insert into tbl_member values ( seq_member.nextval, 'user77', '1234', '유저77', 'test77@naver.com', '010-1234-1234', '서울 강감구 삼성동', 2, sysdate);
 insert into tbl_member values ( seq_member.nextval, 'user78', '1234', '유저78', 'test78@naver.com', '010-1234-1234', '경기 가평군', 2, sysdate);

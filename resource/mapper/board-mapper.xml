@@ -4,6 +4,7 @@
 
 	<select id="selectAllBoardPage" parameterType="map"
 		resultType="board">
+		<!-- 보기 좋게 rnum 을 사용 -->
 		select 
 			rnum,
 			board_no      as "boardNo",
@@ -17,14 +18,51 @@
 				from (
 					select *
 					from tbl_board
+					<if test="srchKeyword != null and srchKeyword != ''">
+						<choose>
+							<when test="srchType == 'boardTitle'">
+							where board_title like '%' || #{srchKeyword} || '%'
+							</when>
+							<when test="srchType == 'boardWriter'">
+							where board_writer = ( 
+								select member_no from tbl_member 
+								where member_id = #{srchKeyword} 
+							)
+							</when>
+						</choose>
+					</if>
 					order by 1
 				) a
 			) a
 		where rnum between #{start} and #{end}
 	</select>
 
-	<select id="selectTotalCount" resultType="_int">
+	<select id="selectTotalCount" 
+	parameterType="map"
+	resultType="_int">
 		select count(*) from tbl_board
+		<if test="srchKeyword != null and srchKeyword != ''">
+			<choose>
+				<when test="srchType == 'boardTitle'">
+				where board_title like '%' || #{srchKeyword} || '%'
+				</when>
+				<when test="srchType == 'boardWriter'">
+				where board_writer = ( 
+					select member_no from tbl_member 
+					where member_id = #{srchKeyword} 
+				)
+				</when>
+			</choose>
+		</if>
 	</select>
+	
+	<delete id="deleteBoard"
+	parameterType="map">
+	delete from tbl_board
+	where board_no in
+	<foreach collection="array" item="no" open="(" separator="," close=")">
+	#{no}
+	</foreach>
+	</delete>
 
 </mapper>

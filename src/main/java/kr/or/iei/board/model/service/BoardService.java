@@ -19,19 +19,28 @@ public class BoardService {
 		dao = new BoardDao();
 	}
 
-	public BoardPageData selectAllBoardList(int reqPage) {
+	public BoardPageData selectAllBoardList(int reqPage, String srchType, String srchKeyword) {
 		SqlSession session = SqlSessionTemplate.getSqlsession();
 
 		int viewBoardCnt = 10;
 		int end = reqPage * viewBoardCnt;
 		int start = end - viewBoardCnt + 1;
 
-		HashMap<String, Integer> map = new HashMap<>();
-		map.put("start", start);
-		map.put("end", end);
+		// String, Interger 에서 검색어도 전달하기 위해서 String 으로 변경
+		HashMap<String, String> map = new HashMap<>();
+		// 변수의 값을 String 으로 변환시켜줌
+		map.put("start", String.valueOf(start));
+		// 정수와 문자열을 결합 하면 문자열이 된다
+		map.put("end", end + "");
+		map.put("srchType", srchType);
+		map.put("srchKeyword", srchKeyword);
+
 		ArrayList<Board> list = (ArrayList<Board>) dao.selectBoradList(session, map);
 
-		int totCnt = dao.selectTotalCount(session);
+		/*
+		 * 사용자가 조건 입력시 조건에 부함하는 게시글의 갯수를 조회
+		 */
+		int totCnt = dao.selectTotalCount(session, map);
 		int totPage = 0;
 
 		totPage = totCnt / viewBoardCnt;
@@ -44,13 +53,18 @@ public class BoardService {
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 
 		String pageNavi = "";
+		String searchParam = "";
+
+		if (srchKeyword != null) {
+			searchParam += "&srchType=" + srchType + "&srchKeyword=" + srchKeyword;
+		}
 
 		if (pageNo != 1) {
-			pageNavi += "<a href='/board/getList?reqPage=" + (pageNo - 1) + "'>이전</a>";
+			pageNavi += "<a href='/board/getList?reqPage=" + (pageNo - 1) + searchParam + "'>이전</a>";
 		}
 
 		for (int i = 0; i < pageNaviSize; i++) {
-			pageNavi += "<a href='/board/getList?reqPage=" + pageNo + "'>" + pageNo + "</a>";
+			pageNavi += "<a href='/board/getList?reqPage=" + pageNo + searchParam + "'>" + pageNo + "</a>";
 			pageNo++;
 
 			if (pageNo > totPage) {
@@ -59,15 +73,29 @@ public class BoardService {
 		}
 
 		if (pageNo <= totPage) {
-			pageNavi += "<a href='/board/getList?reqPage=" + (pageNo + 1) + "'>다음</a>";
+			pageNavi += "<a href='/board/getList?reqPage=" + (pageNo + 1) + searchParam + "'>다음</a>";
 		}
-		
+
 		BoardPageData pd = new BoardPageData();
 		pd.setList(list);
 		pd.setPageNavi(pageNavi);
 
 		session.close();
 		return pd;
+	}
+
+	public int deleteBoard(String[] delNo) {
+		SqlSession session = SqlSessionTemplate.getSqlsession();
+		int result = dao.deleteBoard(session, delNo);
+
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+
+		session.close();
+		return result;
 	}
 
 }
