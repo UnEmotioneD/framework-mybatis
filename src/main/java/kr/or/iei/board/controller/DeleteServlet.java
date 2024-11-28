@@ -38,17 +38,16 @@ public class DeleteServlet extends HttpServlet {
 		int result = service.deleteBoard(delNo);
 		
 		if (result > 0) {
-			request.setAttribute("title", "알림");
+			request.setAttribute("title", "성공");
 			request.setAttribute("text", "게시글이 삭제되었습니다");
 			request.setAttribute("icon", "success");
 		} else {
-			request.setAttribute("title", "알림");
+			request.setAttribute("title", "실패");
 			request.setAttribute("text", "게시글 삭제 도중 오류가 발생");
 			request.setAttribute("icon", "error");
 		}
 			request.setAttribute("loc", "/board/getList?reqPage=1");
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
-			
 	}
 
 	/**
