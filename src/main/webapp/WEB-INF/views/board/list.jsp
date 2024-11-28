@@ -23,20 +23,14 @@
 				<th>삭제</th>
 				<th>번호</th>
 				<th>제목</th>
-				<th>내용</th>
 				<th>작성자</th>
-				<th>조회수</th>
-				<th>작성일</th>
 			</tr>
 			<c:forEach var="b" items="${boardList}">
 				<tr>
 					<td><input type="checkbox" name="delNo" value="${b.boardNo}"></td>
 					<td>${b.RNum}</td>
-					<td>${b.boardTitle}</td>
-					<td>${b.boardContent}</td>
+					<td><a href="/board/detail?boardNo=${b.boardNo}">${b.boardTitle}</a></td>
 					<td>${b.boardWriter}</td>
-					<td>${b.readCount}</td>
-					<td>${b.regDate}</td>
 				</tr>
 			</c:forEach>
 		</table>

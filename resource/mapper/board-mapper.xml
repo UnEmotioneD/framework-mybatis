@@ -65,4 +65,28 @@
 	</foreach>
 	</delete>
 
+	<select id="selectOneBoard"
+	parameterType="string"
+	resultType="board">
+	select
+		board_no      as "boardNo",
+		board_title   as "boardTitle",
+		board_content as "boardContent",
+		(select member_id 
+			from tbl_member 
+			where member_no = board_writer
+		)             as "boardWriter",
+		read_count    as "readCount",
+		reg_date      as "regDate"
+	from tbl_board
+	where board_no = #{boardNo}
+	</select>
+	
+	<update id="updateReadCount"
+	parameterType="string" >
+	update tbl_board 
+	set read_count = read_count + 1
+	where board_no = #{boardNo} 
+	</update>
+
 </mapper>

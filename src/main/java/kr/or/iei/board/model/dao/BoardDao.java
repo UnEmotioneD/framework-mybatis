@@ -21,4 +21,12 @@ public class BoardDao {
 		return session.delete("board.deleteBoard", delNo);
 	}
 
+	public Board selectOneBoard(SqlSession session, String boardNo) {
+		return session.selectOne("board.selectOneBoard", boardNo);
+	}
+
+	public int updateReadCount(SqlSession session, String boardNo) {
+		return session.update("board.updateReadCount", boardNo);
+	}
+
 }

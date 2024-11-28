@@ -93,9 +93,21 @@ public class BoardService {
 		} else {
 			session.rollback();
 		}
-
 		session.close();
 		return result;
+	}
+
+	public Board selectOneBoard(String boardNo) {
+		SqlSession session = SqlSessionTemplate.getSqlsession();
+		Board board = null;
+		if (dao.updateReadCount(session, boardNo) > 0) {
+			board = dao.selectOneBoard(session, boardNo);
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		session.close();
+		return board;
 	}
 
 }
