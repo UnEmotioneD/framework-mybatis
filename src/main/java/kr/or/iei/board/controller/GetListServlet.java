@@ -35,16 +35,16 @@ public class GetListServlet extends HttpServlet {
 		int reqPage = request.getParameter("reqPage") != null ? Integer.parseInt(request.getParameter("reqPage")) : 1;
 
 		// 게시글 목록 하단에서 검색하였을 떄 전달한 파라미터
-		String srchType = request.getParameter("srchType");
-		String srchKeyword = request.getParameter("srchKeyword");
+		String searchType = request.getParameter("searchType");
+		String searchKeyword = request.getParameter("srchKeyword");
 
 		BoardService service = new BoardService();
-		BoardPageData pd = service.selectAllBoardList(reqPage, srchType, srchKeyword);
+		BoardPageData pd = service.selectAllBoardList(reqPage, searchType, searchKeyword);
 
 		request.setAttribute("boardList", pd.getList());
 		request.setAttribute("pageNavi", pd.getPageNavi());
-		request.setAttribute("srchType", srchType);
-		request.setAttribute("srchKeyword", srchKeyword);
+		request.setAttribute("searchType", searchType);
+		request.setAttribute("searchKeyword", searchKeyword);
 		request.getRequestDispatcher("/WEB-INF/views/board/list.jsp").forward(request, response);
 	}
 

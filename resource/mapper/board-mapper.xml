@@ -18,15 +18,15 @@
 				from (
 					select *
 					from tbl_board
-					<if test="srchKeyword != null and srchKeyword != ''">
+					<if test="searchKeyword != null and searchKeyword != ''">
 						<choose>
-							<when test="srchType == 'boardTitle'">
-							where board_title like '%' || #{srchKeyword} || '%'
+							<when test="searchType == 'boardTitle'">
+							where board_title like '%' || #{searchKeyword} || '%'
 							</when>
-							<when test="srchType == 'boardWriter'">
+							<when test="searchType == 'boardWriter'">
 							where board_writer = ( 
 								select member_no from tbl_member 
-								where member_id = #{srchKeyword} 
+								where member_id = #{searchKeyword} 
 							)
 							</when>
 						</choose>
@@ -41,15 +41,15 @@
 	parameterType="map"
 	resultType="_int">
 		select count(*) from tbl_board
-		<if test="srchKeyword != null and srchKeyword != ''">
+		<if test="searchKeyword != null and searchKeyword != ''">
 			<choose>
-				<when test="srchType == 'boardTitle'">
-				where board_title like '%' || #{srchKeyword} || '%'
+				<when test="searchType == 'boardTitle'">
+				where board_title like '%' || #{searchKeyword} || '%'
 				</when>
-				<when test="srchType == 'boardWriter'">
+				<when test="searchType == 'boardWriter'">
 				where board_writer = ( 
 					select member_no from tbl_member 
-					where member_id = #{srchKeyword} 
+					where member_id = #{searchKeyword} 
 				)
 				</when>
 			</choose>

@@ -46,14 +46,14 @@
 		기존 index.jsp 에서 게시판 목록을 요청했을 때 작성한 URL과 동일한 URL로 요청하여 재검색
 	 --%>
 	<form action="/board/getList" method="get">
-		<select name="srchType">
+		<select name="searchType">
 			<option value="boardTitle">제목</option>
 			<option value="boardWriter"
-				<c:if test="${srchType == 'boardWriter'}">
+				<c:if test="${searchType == 'boardWriter'}">
 				selected
 				</c:if>>
 				작성자</option>
-		</select> <input type="text" name="srchKeyword" value="${srchKeyword}">
+		</select> <input type="text" name="searchKeyword" value="${searchKeyword}">
 		<input type="submit" value="조회">
 	</form>
 

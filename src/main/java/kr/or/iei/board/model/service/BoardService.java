@@ -19,7 +19,7 @@ public class BoardService {
 		dao = new BoardDao();
 	}
 
-	public BoardPageData selectAllBoardList(int reqPage, String srchType, String srchKeyword) {
+	public BoardPageData selectAllBoardList(int reqPage, String searchType, String searchKeyword) {
 		SqlSession session = SqlSessionTemplate.getSqlsession();
 
 		int viewBoardCnt = 10;
@@ -32,8 +32,8 @@ public class BoardService {
 		map.put("start", String.valueOf(start));
 		// 정수와 문자열을 결합 하면 문자열이 된다
 		map.put("end", end + "");
-		map.put("srchType", srchType);
-		map.put("srchKeyword", srchKeyword);
+		map.put("searchType", searchType);
+		map.put("searchKeyword", searchKeyword);
 
 		ArrayList<Board> list = (ArrayList<Board>) dao.selectBoradList(session, map);
 
@@ -55,8 +55,8 @@ public class BoardService {
 		String pageNavi = "";
 		String searchParam = "";
 
-		if (srchKeyword != null) {
-			searchParam += "&srchType=" + srchType + "&srchKeyword=" + srchKeyword;
+		if (searchKeyword != null) {
+			searchParam += "&searchType=" + searchType + "&searchKeyword=" + searchKeyword;
 		}
 
 		if (pageNo != 1) {
