@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="board">
 
-	<select id="selectAllBoardPage" parameterType="map"
+	<select id="selectBoarderList" parameterType="map"
 		resultType="board">
 		<!-- 보기 좋게 rnum 을 사용 -->
 		select 

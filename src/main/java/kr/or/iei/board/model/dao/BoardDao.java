@@ -10,7 +10,7 @@ import kr.or.iei.board.model.vo.Board;
 public class BoardDao {
 
 	public List<Board> selectBoradList(SqlSession session, HashMap<String, String> map) {
-		return session.selectList("board.selectAllBoardPage", map);
+		return session.selectList("board.selectBoarderList", map);
 	}
 
 	public int selectTotalCount(SqlSession session, HashMap<String, String> map) {
