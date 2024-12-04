@@ -52,7 +52,7 @@ http://mybatis.org/dtd/mybatis-3-config.dtd
 ##### Add mapper
 ###### location : 
 ```bash
-http://mybatis.org/dtd/mybatis-3-mapper.dtd 
+http://mybatis.org/dtd/mybatis-3-mapper.dtd
 ```
 ###### key : 
 ```bash
